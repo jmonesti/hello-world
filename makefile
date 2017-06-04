@@ -11,6 +11,7 @@ clean :
 	$(RM) $(BIN)/* hello.out
 
 $(BIN)/%.o : %.cpp
+	-mkdir -p $(BIN)
 	$(CXX) -c $(CXXFLAGS) $^ -o $@
 
 hello.out : $(BIN)/main.o
