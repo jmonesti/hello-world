@@ -2,13 +2,16 @@ vpath %.cpp ./src
 
 .PHONY: clean all
 
+OS	= $(shell uname -s)
+BIN	= ./bin/$(OS)
+
 all : hello.out
 
 clean :
-	$(RM) bin/Linux/* hello.out
+	$(RM) $(BIN)/* hello.out
 
-bin/Linux/%.o : %.cpp
+$(BIN)/%.o : %.cpp
 	$(CXX) -c $(CXXFLAGS) $^ -o $@
 
-hello.out : bin/Linux/main.o
+hello.out : $(BIN)/main.o
 	$(CXX) $(LDFLAGS) $^ -o $@
